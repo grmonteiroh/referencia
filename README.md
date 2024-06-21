@@ -19,22 +19,22 @@ Os dados foram coletados e organizados nas seguintes colunas:
    - Saldos Não Estáveis: Parte do saldo que é suscetível a grandes variações devido a saques.
    - Saldos Core: Fração dos saldos estáveis que representam um fundo estável e de longo prazo.
    - Saldos Não Core: Fração dos saldos que não se enquadram na categoria core.
-   - 
+  
 3. **Modelagem do Decaimento**
 Para modelar o decaimento dos saldos, consideramos a equação de decaimento discreta e autorregressiva, incorporando a sensibilidade às taxas de juros.
 
 **Equação de Decaimento:**
-![a](https://latex.codecogs.com/svg.image?S_t=S_{t-1}\cdot&space;e^{-\lambda\Delta&space;t}&plus;\epsilon_t)
+![a](https://latex.codecogs.com/svg.image?{\color{White}S_t=S_{t-1}\cdot&space;e^{-\lambda\Delta&space;t}&plus;\epsilon_t})
 
 onde:
-   - ![a](https://latex.codecogs.com/svg.image?S_t) é o saldo no tempo 
+   - ![a]({\color{White}https://latex.codecogs.com/svg.image?S_t}) é o saldo no tempo 
    - λ é a taxa de decaimento.
    - Δt é o intervalo de tempo (número de dias úteis).
    - ϵt é o termo de erro (ruído estocástico).
 
 A taxa de decaimento λ pode ser ajustada considerando a sensibilidade às taxas de juros e outros fatores macroeconômicos:
 
-![a](https://latex.codecogs.com/svg.image?\lambda=\alpha&plus;\beta\cdot(r_{CDB}-r_{poupanca})&plus;\gamma\cdot&space;X_t)
+![a]({\color{White}https://latex.codecogs.com/svg.image?\lambda=\alpha&plus;\beta\cdot(r_{CDB}-r_{poupanca})&plus;\gamma\cdot&space;X_t})
 
 onde:
 
