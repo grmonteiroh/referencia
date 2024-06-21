@@ -27,14 +27,14 @@ Para modelar o decaimento dos saldos, consideramos a equação de decaimento dis
 ![a](https://latex.codecogs.com/svg.image?{\color{White}S_t=S_{t-1}\cdot&space;e^{-\lambda\Delta&space;t}&plus;\epsilon_t})
 
 onde:
-   - ![a]({\color{White}https://latex.codecogs.com/svg.image?S_t}) é o saldo no tempo 
+   - ![a](https://latex.codecogs.com/svg.image?{\color{White}S_t}) é o saldo no tempo 
    - λ é a taxa de decaimento.
    - Δt é o intervalo de tempo (número de dias úteis).
    - ϵt é o termo de erro (ruído estocástico).
 
 A taxa de decaimento λ pode ser ajustada considerando a sensibilidade às taxas de juros e outros fatores macroeconômicos:
 
-![a]({\color{White}https://latex.codecogs.com/svg.image?\lambda=\alpha&plus;\beta\cdot(r_{CDB}-r_{poupanca})&plus;\gamma\cdot&space;X_t})
+![a](https://latex.codecogs.com/svg.image?{\color{White}\lambda=\alpha&plus;\beta\cdot(r_{CDB}-r_{poupanca})&plus;\gamma\cdot&space;X_t})
 
 onde:
 
