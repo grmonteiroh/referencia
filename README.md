@@ -7,7 +7,7 @@ Este modelo visa calcular a curva de decaimento dos saldos de contas e poupança
 ## Metodologia
 1. **Coleta e Limpeza de Dados**
 
-Os dados foram coletados e organizados nas seguintes colunas:
+   Os dados foram coletados e organizados nas seguintes colunas:
    - Data: Data da transação.
    - Número da Conta: Identificador da conta.
    - Saldo: Saldo atual da conta.
@@ -24,7 +24,7 @@ Os dados foram coletados e organizados nas seguintes colunas:
   
 3. **Modelagem do Decaimento**
 
-   Para modelar o decaimento dos saldos, consideramos a equação de decaimento discreta e autorregressiva, incorporando a sensibilidade às taxas de juros.
+      Para modelar o decaimento dos saldos, consideramos a equação de decaimento discreta e autorregressiva, incorporando a sensibilidade às taxas de juros.
 
 ### Equação de Decaimento:
 ![a](https://latex.codecogs.com/svg.image?{\color{White}S_t=S_{t-1}\cdot&space;e^{-\lambda\Delta&space;t}&plus;\epsilon_t})
