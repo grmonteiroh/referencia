@@ -6,6 +6,7 @@ Este modelo visa calcular a curva de decaimento dos saldos de contas e poupança
    
 ## Metodologia
 1. **Coleta e Limpeza de Dados**
+
 Os dados foram coletados e organizados nas seguintes colunas:
    - Data: Data da transação.
    - Número da Conta: Identificador da conta.
@@ -15,13 +16,15 @@ Os dados foram coletados e organizados nas seguintes colunas:
    - Filtramos os dados para incluir apenas linhas com diferença negativa, representando os saques realizados.
 
 2. **Definição de Saldos Estáveis e Não Estáveis**
+   
    - Saldos Estáveis: Parte do saldo que permanece constante ou apresenta pouca variação.
    - Saldos Não Estáveis: Parte do saldo que é suscetível a grandes variações devido a saques.
    - Saldos Core: Fração dos saldos estáveis que representam um fundo estável e de longo prazo.
    - Saldos Não Core: Fração dos saldos que não se enquadram na categoria core.
   
 3. **Modelagem do Decaimento**
-Para modelar o decaimento dos saldos, consideramos a equação de decaimento discreta e autorregressiva, incorporando a sensibilidade às taxas de juros.
+
+   Para modelar o decaimento dos saldos, consideramos a equação de decaimento discreta e autorregressiva, incorporando a sensibilidade às taxas de juros.
 
 ### Equação de Decaimento:
 ![a](https://latex.codecogs.com/svg.image?{\color{White}S_t=S_{t-1}\cdot&space;e^{-\lambda\Delta&space;t}&plus;\epsilon_t})
