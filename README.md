@@ -23,10 +23,10 @@ Os dados foram coletados e organizados nas seguintes colunas:
 3. **Modelagem do Decaimento**
 Para modelar o decaimento dos saldos, consideramos a equação de decaimento discreta e autorregressiva, incorporando a sensibilidade às taxas de juros.
 
-**Equação de Decaimento:**
+### Equação de Decaimento:
 ![a](https://latex.codecogs.com/svg.image?{\color{White}S_t=S_{t-1}\cdot&space;e^{-\lambda\Delta&space;t}&plus;\epsilon_t})
 
-onde:
+Onde:
    - ![a](https://latex.codecogs.com/svg.image?{\color{White}S_t}) é o saldo no tempo 
    - λ é a taxa de decaimento.
    - Δt é o intervalo de tempo (número de dias úteis).
@@ -36,7 +36,7 @@ A taxa de decaimento λ pode ser ajustada considerando a sensibilidade às taxas
 
 ![a](https://latex.codecogs.com/svg.image?{\color{White}\lambda=\alpha&plus;\beta\cdot(r_{CDB}-r_{poupanca})&plus;\gamma\cdot&space;X_t})
 
-onde:
+Onde:
    - α é um termo constante.
    - β representa a sensibilidade dos saldos à diferença de taxas de juros entre CDB e poupança.
    - rCDB é a taxa de juros do CDB.
