@@ -37,75 +37,24 @@ A taxa de decaimento λ pode ser ajustada considerando a sensibilidade às taxas
 ![a](https://latex.codecogs.com/svg.image?{\color{White}\lambda=\alpha&plus;\beta\cdot(r_{CDB}-r_{poupanca})&plus;\gamma\cdot&space;X_t})
 
 onde:
-
-�
-α é um termo constante.
-�
-β representa a sensibilidade dos saldos à diferença de taxas de juros entre CDB e poupança.
-�
-�
-�
-�
-r 
-CDB
-​
-  é a taxa de juros do CDB.
-�
-�
-�
-�
-�
-�
-�
-�
-\c
-�
-r 
-poupan 
-c
-\c
-​
- a
-​
-  é a taxa de juros da poupança.
-�
-γ são os coeficientes de sensibilidade a outras variáveis macroeconômicas 
-�
-�
-X 
-t
-​
- .
+   - α é um termo constante.
+   - β representa a sensibilidade dos saldos à diferença de taxas de juros entre CDB e poupança.
+   - rCDB é a taxa de juros do CDB.
+   - rpoupanca é a taxa de juros da poupança.
+   - γ são os coeficientes de sensibilidade a outras variáveis macroeconômicas Xt.
    
-3. **Resultados Esperados**:
-   - Resultados antecipados e como eles serão medidos.
-   - Impacto esperado e possíveis aplicações.
+4. **Implementação**
+**Passo 1: Coleta dos Dados**
+Os dados históricos de saldos e transações foram coletados e organizados. Os saques foram filtrados para análise.
 
-4. **Conclusão**:
-   - Resumo dos principais pontos discutidos.
-   - Considerações finais e próximos passos.
+**Passo 2: Estimativa de Parâmetros**
+Utilizamos técnicas econométricas para estimar os parâmetros α, β e γ. Modelos de regressão linear e séries temporais são aplicados para entender a relação entre os saques e as variáveis macroeconômicas.
 
-### Equações Matemáticas
+**Passo 3: Simulação do Decaimento**
+Com os parâmetros estimados, simulamos a curva de decaimento dos saldos ao longo de um período específico. Utilizamos métodos de Monte Carlo para incorporar o termo de erro ϵt e obter diferentes trajetórias possíveis dos saldos.
 
-Neste projeto, utilizamos várias equações matemáticas para modelar e resolver o problema proposto.
+4. **Resultados Esperados**
+Os resultados incluem uma curva de decaimento que mostra a porcentagem de saldo restante ao longo do tempo. Essa curva pode ser utilizada para prever o comportamento dos saldos sob diferentes cenários de taxas de juros e condições macroeconômicas.
 
-#### Equação de Exemplo 1
-
-A primeira equação utilizada é a equação quadrática, que é expressa como:
-
-![Equação Quadrática](https://latex.codecogs.com/png.latex?ax^2%20+%20bx%20+%20c%20=%200)
-
-onde:
-- \(a\), \(b\), e \(c\) são coeficientes constantes.
-- \(x\) representa as variáveis.
-
-#### Equação de Exemplo 2
-
-Outra equação importante é a fórmula da área de um círculo, dada por:
-
-\[ A = \pi r^2 \]
-
-onde:
-- \(A\) é a área do círculo.
-- \(\pi\) é uma constante aproximadamente igual a 3.14159.
-- \(r\) é o raio do círculo.
+5. **Conclusão**
+Este modelo oferece uma abordagem quantitativa robusta para analisar o decaimento dos saldos de contas e poupanças. A inclusão de variáveis macroeconômicas e a sensibilidade às taxas de juros permite uma compreensão detalhada dos fatores que influenciam os saques e o comportamento dos depositantes.
