@@ -34,7 +34,7 @@ Neste projeto, utilizamos várias equações matemáticas para modelar e resolve
 
 A primeira equação utilizada é a equação quadrática, que é expressa como:
 
-\[ ax^2 + bx + c = 0 \]
+![Equação Quadrática](https://latex.codecogs.com/png.latex?ax^2%20+%20bx%20+%20c%20=%200)
 
 onde:
 - \(a\), \(b\), e \(c\) são coeficientes constantes.
