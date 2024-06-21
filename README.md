@@ -47,14 +47,11 @@ Onde:
    - γ são os coeficientes de sensibilidade a outras variáveis macroeconômicas Xt.
    
 ## Implementação
-**Passo 1: Coleta dos Dados**
-Os dados históricos de saldos e transações foram coletados e organizados. Os saques foram filtrados para análise.
+**Passo 1: Coleta dos Dados:** Os dados históricos de saldos e transações foram coletados e organizados. Os saques foram filtrados para análise.
 
-**Passo 2: Estimativa de Parâmetros**
-Utilizamos técnicas econométricas para estimar os parâmetros α, β e γ. Modelos de regressão linear e séries temporais são aplicados para entender a relação entre os saques e as variáveis macroeconômicas.
+**Passo 2: Estimativa de Parâmetros:** Utilizamos técnicas econométricas para estimar os parâmetros α, β e γ. Modelos de regressão linear e séries temporais são aplicados para entender a relação entre os saques e as variáveis macroeconômicas.
 
-**Passo 3: Simulação do Decaimento**
-Com os parâmetros estimados, simulamos a curva de decaimento dos saldos ao longo de um período específico. Utilizamos métodos de Monte Carlo para incorporar o termo de erro ϵt e obter diferentes trajetórias possíveis dos saldos.
+**Passo 3: Simulação do Decaimento:** Com os parâmetros estimados, simulamos a curva de decaimento dos saldos ao longo de um período específico. Utilizamos métodos de Monte Carlo para incorporar o termo de erro ϵt e obter diferentes trajetórias possíveis dos saldos.
 
 ## Resultados Esperados
 Os resultados incluem uma curva de decaimento que mostra a porcentagem de saldo restante ao longo do tempo. Essa curva pode ser utilizada para prever o comportamento dos saldos sob diferentes cenários de taxas de juros e condições macroeconômicas.
