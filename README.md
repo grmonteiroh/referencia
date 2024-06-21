@@ -58,3 +58,11 @@ Os resultados incluem uma curva de decaimento que mostra a porcentagem de saldo 
 
 ## Conclusão
 Este modelo oferece uma abordagem quantitativa robusta para analisar o decaimento dos saldos de contas e poupanças. A inclusão de variáveis macroeconômicas e a sensibilidade às taxas de juros permite uma compreensão detalhada dos fatores que influenciam os saques e o comportamento dos depositantes.
+
+## Referências
+   - Montenegro, M. A. (2016). Avaliação do Risco de Juros dos Depósitos de Poupança. Dissertação de Mestrado, Fundação Getulio Vargas.
+   - aa
+   - bb
+   - cc
+   - dd
+   - ee
