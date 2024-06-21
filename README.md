@@ -43,7 +43,7 @@ onde:
    - rpoupanca é a taxa de juros da poupança.
    - γ são os coeficientes de sensibilidade a outras variáveis macroeconômicas Xt.
    
-4. **Implementação**
+## Implementação
 **Passo 1: Coleta dos Dados**
 Os dados históricos de saldos e transações foram coletados e organizados. Os saques foram filtrados para análise.
 
@@ -53,8 +53,8 @@ Utilizamos técnicas econométricas para estimar os parâmetros α, β e γ. Mod
 **Passo 3: Simulação do Decaimento**
 Com os parâmetros estimados, simulamos a curva de decaimento dos saldos ao longo de um período específico. Utilizamos métodos de Monte Carlo para incorporar o termo de erro ϵt e obter diferentes trajetórias possíveis dos saldos.
 
-4. **Resultados Esperados**
+## Resultados Esperados
 Os resultados incluem uma curva de decaimento que mostra a porcentagem de saldo restante ao longo do tempo. Essa curva pode ser utilizada para prever o comportamento dos saldos sob diferentes cenários de taxas de juros e condições macroeconômicas.
 
-5. **Conclusão**
+## Conclusão
 Este modelo oferece uma abordagem quantitativa robusta para analisar o decaimento dos saldos de contas e poupanças. A inclusão de variáveis macroeconômicas e a sensibilidade às taxas de juros permite uma compreensão detalhada dos fatores que influenciam os saques e o comportamento dos depositantes.
