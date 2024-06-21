@@ -1,22 +1,81 @@
-# Título do Projeto
+# Curva de Decaimento
 
-## Subtítulo do Projeto
+## Introdução
 
-Este projeto visa explorar [insira aqui o objetivo do seu projeto]. Ele abrange várias áreas, incluindo [insira aqui as áreas de estudo]. Abaixo estão os detalhes do projeto, com tópicos e equações matemáticas relevantes.
-
-### Introdução
-
-O projeto começa com uma introdução detalhada dos conceitos principais. Aqui, discutimos o problema e os métodos propostos para solucioná-lo. Além disso, fornecemos um panorama geral das técnicas e ferramentas utilizadas.
-
-### Tópicos Principais
-
-1. **Objetivo do Projeto**:
-   - Descrição detalhada do que se espera alcançar com este projeto.
-   - Metas e objetivos específicos.
+Este modelo visa calcular a curva de decaimento dos saldos de contas e poupanças de pessoas físicas (PF) e jurídicas (PJ), considerando os saques realizados. A abordagem utilizada baseia-se em métodos de autorregressão e incorpora a sensibilidade dos depósitos às taxas de juros.
    
-2. **Metodologia**:
-   - Descrição das abordagens e técnicas utilizadas.
-   - Ferramentas e tecnologias empregadas.
+## Metodologia
+1. **Coleta e Limpeza de Dados**
+Os dados foram coletados e organizados nas seguintes colunas:
+   - Data: Data da transação.
+   - Número da Conta: Identificador da conta.
+   - Saldo: Saldo atual da conta.
+   - Saldo Anterior: Saldo da conta no dia anterior.
+   - Diferença: Variação no saldo (Saldo Atual - Saldo Anterior).
+   - Filtramos os dados para incluir apenas linhas com diferença negativa, representando os saques realizados.
+
+2. **Definição de Saldos Estáveis e Não Estáveis**
+   - Saldos Estáveis: Parte do saldo que permanece constante ou apresenta pouca variação.
+   - Saldos Não Estáveis: Parte do saldo que é suscetível a grandes variações devido a saques.
+   - Saldos Core: Fração dos saldos estáveis que representam um fundo estável e de longo prazo.
+   - Saldos Não Core: Fração dos saldos que não se enquadram na categoria core.
+   - 
+3. **Modelagem do Decaimento**
+Para modelar o decaimento dos saldos, consideramos a equação de decaimento discreta e autorregressiva, incorporando a sensibilidade às taxas de juros.
+
+**Equação de Decaimento:**
+![a](https://latex.codecogs.com/svg.image?S_t=S_{t-1}\cdot&space;e^{-\lambda\Delta&space;t}&plus;\epsilon_t)
+
+onde:
+   - ![a](https://latex.codecogs.com/svg.image?S_t) é o saldo no tempo 
+   - λ é a taxa de decaimento.
+   - Δt é o intervalo de tempo (número de dias úteis).
+   - ϵt é o termo de erro (ruído estocástico).
+
+A taxa de decaimento λ pode ser ajustada considerando a sensibilidade às taxas de juros e outros fatores macroeconômicos:
+
+![a](https://latex.codecogs.com/svg.image?\lambda=\alpha&plus;\beta\cdot(r_{CDB}-r_{poupanca})&plus;\gamma\cdot&space;X_t)
+
+onde:
+
+�
+α é um termo constante.
+�
+β representa a sensibilidade dos saldos à diferença de taxas de juros entre CDB e poupança.
+�
+�
+�
+�
+r 
+CDB
+​
+  é a taxa de juros do CDB.
+�
+�
+�
+�
+�
+�
+�
+�
+\c
+�
+r 
+poupan 
+c
+\c
+​
+ a
+​
+  é a taxa de juros da poupança.
+�
+γ são os coeficientes de sensibilidade a outras variáveis macroeconômicas 
+�
+�
+X 
+t
+​
+ .
    
 3. **Resultados Esperados**:
    - Resultados antecipados e como eles serão medidos.
