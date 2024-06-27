@@ -1,0 +1,49 @@
+https://medium.com/@gisely.alves/séries-temporais-parte-1-20fca5a6c7cd
+https://www.projectpro.io/article/how-to-build-arima-model-in-python/544
+
+Teste para ver se a série é estacionária (Augmented Dickey-Fuller):
+  from statsmodels.tsa.stattools import adfuller
+  adftest = adfuller(df['meantemp'])
+
+  out = pd.Series(adftest[0:4], index=['Teste','p-valor','Lags','Número de observações usadas'])
+  for key,value in adftest[4].items():
+      out['Valor crítico (%s)'%key] = value
+  # p-valor que tem ser menor do que o nível de significância escolhido
+
+Media Movel:
+  mediamovel = df['meantemp'].rolling(window=7).mean()
+  # fazer com 30 dias pra representar 1 mês
+
+Transformação logaritmica:
+  temp_log = np.log(df['meantemp']) #Transformação logarítmica
+
+Transformação logarítmica e subtrair a média móvel:
+  log_menos_media = temp_log - mediamovel_log
+  log_menos_media.dropna(inplace=True)
+
+Autocorrelação e Autocorrelação parcial (ACF e PACF):
+  from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+  plot_acf(df.meantemp)
+  plot_pacf(df.meantemp)
+  plt.show()
+
+ARIMA:
+  from statsmodels.tsa.arima_model import ARIMA
+  model = ARIMA(df, order=(4, 1, 0))
+  model_fit = model.fit()
+  predicted = model_fit.predict(len(df), len(df)+3)
+  # no ARIMA a ordem é para a AR, as diferenciações e a MA, respectivamente.
+
+ARIMA(p,d,q)
+  d: order de diferenciação
+  # Augmented Dickey-Fuller(ADF) teste é o que vai dizer se a nossa diferenciação deu cero
+  p: lag mais significante
+  # Pelo gráfico PACF (Partial Autocorrelation)
+  q: number of lags crossing the threshold
+  # Pelo gráfico PACF (Partial Autocorrelation)
+
+Exponential Smoothing:
+  from statsmodels.tsa.holtwinters import SimpleExpSmoothing
+  model = SimpleExpSmoothing(df)
+  model_fit = model.fit()
+  predicted = model_fit.predict(len(df), len(df)+3)
