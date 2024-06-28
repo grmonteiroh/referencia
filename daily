@@ -1,0 +1,56 @@
+Daily Meeting - Projeto Curva de Decaimento
+Data: [Data da Reunião]
+
+1. Status Atual do Projeto
+
+Foco Atual: Carteira de poupança.
+
+2. Progresso Realizado
+
+Coleta de Dados:
+Dados coletados com sucesso do banco de dados.
+
+Seleção de Variáveis:
+Variáveis selecionadas: Data e Saldo.
+
+Construção de Gráficos:
+Gráficos construídos:
+"Saldo por dia corridos" para os anos de 2021, 2022 e 2023.
+"Saque por dias corridos" para os anos de 2021, 2022 e 2023.
+
+Desenvolvimento de Modelos de Predição:
+Modelos desenvolvidos para o saldo total analisando entrada e saída.
+Modelos de predição usando apenas saída ainda não estão completos.
+
+3. Problemas Identificados
+
+Erro nos Dados:
+Ano de 2021: erro na data de '2021-07-23'.
+
+4. Próximos Passos
+
+Correção dos Dados:
+Verificar e corrigir o erro na data de '2021-07-23'.
+
+Análise dos Gráficos:
+Continuar a análise dos gráficos construídos para identificar padrões e insights.
+
+Desenvolvimento de Modelos:
+Finalizar os modelos de predição usando apenas saída.
+Testar e validar os modelos desenvolvidos para entrada e saída.
+
+Relatório Detalhado:
+Iniciar a elaboração de um relatório detalhado com os resultados preliminares.
+
+5. Necessidades e Solicitações
+
+Recursos Adicionais:
+[Se houver necessidade de algum recurso adicional, liste aqui.]
+
+Feedback:
+Solicitar feedback sobre os gráficos construídos e possíveis correções ou ajustes.
+Solicitar feedback sobre os modelos de predição desenvolvidos.
+
+6. Comentários Finais
+
+[Espaço para comentários finais e observações relevantes.]
