@@ -1,0 +1,131 @@
+# Import necessary libraries
+import pandas as pd
+import numpy as np
+from lifelines import KaplanMeierFitter
+import matplotlib.pyplot as plt
+
+# Step 1: Read the data
+# Assuming the data is stored in 'account_balances.csv' with columns: 'account_id', 'date', 'balance'
+data = pd.read_csv('account_balances.csv')
+
+# Convert 'date' column to datetime
+data['date'] = pd.to_datetime(data['date'])
+
+# Step 2: Prepare the data
+# Sort the data by 'account_id' and 'date'
+data = data.sort_values(by=['account_id', 'date'])
+
+# Calculate the daily balance change
+data['balance_change'] = data.groupby('account_id')['balance'].diff()
+
+# Calculate daily withdrawals (negative changes in balance)
+data['withdrawal'] = -data['balance_change']
+data['withdrawal'] = data['withdrawal'].apply(lambda x: x if x > 0 else 0)
+
+# Step 3: Calculate average daily withdrawal for each account
+avg_withdrawals = data.groupby('account_id')['withdrawal'].mean().reset_index()
+avg_withdrawals.rename(columns={'withdrawal': 'avg_daily_withdrawal'}, inplace=True)
+
+# Get the latest balance for each account
+latest_balance = data.groupby('account_id')['balance'].last().reset_index()
+
+# Merge average withdrawals and latest balance
+account_data = pd.merge(avg_withdrawals, latest_balance, on='account_id')
+
+# Step 4: Calculate time to zero balance for each account
+# Handle cases where average daily withdrawal is zero (no withdrawals)
+account_data['time_to_zero'] = account_data.apply(
+    lambda row: row['balance'] / row['avg_daily_withdrawal'] if row['avg_daily_withdrawal'] > 0 else np.nan, axis=1)
+
+# Event indicator: 1 if event observed (balance reaches zero), 0 if censored
+account_data['event_observed'] = account_data['time_to_zero'].notnull().astype(int)
+
+# For censored data (no withdrawals), assign censoring time as the maximum observed time_to_zero
+max_time = account_data['time_to_zero'].max()
+account_data['time_to_zero'].fillna(max_time, inplace=True)
+
+# Step 5: Fit the Kaplan-Meier estimator
+kmf = KaplanMeierFitter()
+T = account_data['time_to_zero']
+E = account_data['event_observed']
+kmf.fit(T, event_observed=E)
+
+# Plot the survival function
+kmf.plot_survival_function()
+plt.title('Kaplan-Meier Survival Curve')
+plt.xlabel('Time (days)')
+plt.ylabel('Survival Probability')
+plt.show()
+
+# Step 6: Simulate the total balance over time
+# Create a time grid up to the maximum time_to_zero
+max_time = int(np.ceil(account_data['time_to_zero'].max()))
+time_grid = np.arange(0, max_time + 1)
+
+# Initialize a DataFrame to hold the total balance over time
+total_balance_over_time = pd.DataFrame({'time': time_grid})
+total_balance_over_time['total_balance'] = 0
+
+# Simulate the balance for each account over time
+for index, row in account_data.iterrows():
+    balance = row['balance']
+    avg_withdrawal = row['avg_daily_withdrawal']
+    time_to_zero = row['time_to_zero']
+    
+    if avg_withdrawal > 0:
+        # Balance decreases over time until it reaches zero
+        account_time = np.minimum(time_grid, time_to_zero)
+        account_balance = np.maximum(balance - avg_withdrawal * account_time, 0)
+    else:
+        # No withdrawals, balance remains constant
+        account_balance = np.full_like(time_grid, balance)
+    
+    # Add account balance over time to the total balance
+    total_balance_over_time['total_balance'] += account_balance
+
+# Plot the total balance over time
+plt.figure()
+plt.plot(total_balance_over_time['time'], total_balance_over_time['total_balance'])
+plt.title('Total Balance Over Time')
+plt.xlabel('Time (days)')
+plt.ylabel('Total Balance')
+plt.show()
+
+# Step 7: Estimate the time when the total balance reaches zero
+# Find the time when total_balance crosses zero
+zero_balance_time = total_balance_over_time[total_balance_over_time['total_balance'] <= 0]['time'].min()
+
+if pd.isnull(zero_balance_time):
+    print("The total balance does not reach zero within the simulated time period.")
+else:
+    print(f"The total balance of the portfolio will reach zero in approximately {zero_balance_time} days.")
+
+### --- 
+Explanation:
+
+Data Preparation:
+
+The code begins by reading the account balance data and preparing it for analysis.
+It calculates the daily change in balance to determine withdrawals.
+Average daily withdrawals are computed for each account.
+Time to Zero Balance:
+
+For each account, the time it would take for the balance to reach zero is calculated, assuming withdrawals continue at the average rate and no new deposits are made.
+Accounts with no withdrawals are considered censored in the survival analysis.
+Kaplan-Meier Estimation:
+
+The Kaplan-Meier estimator is used to estimate the survival function, representing the probability that accounts still have a positive balance over time.
+The survival curve is plotted to visualize the declining proportion of accounts with a positive balance.
+Simulating Total Balance Over Time:
+
+The code simulates the total balance of the entire portfolio over time by summing the simulated balances of all accounts.
+It accounts for both accounts with ongoing withdrawals and those without.
+Estimating Time to Zero Total Balance:
+
+By analyzing the simulated total balance over time, the code estimates when the total balance of the portfolio will reach zero.
+It prints out this estimated time, providing a direct answer to the original question.
+Note:
+
+Replace 'account_balances.csv' with the actual path to your data file.
+Ensure all necessary libraries (pandas, numpy, lifelines, matplotlib) are installed in your Python environment.
+The code assumes that withdrawals will continue at the historical average rate and that no new deposits will be made, as per the problem statement.
