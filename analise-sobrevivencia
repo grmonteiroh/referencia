@@ -1,0 +1,186 @@
+Analise de Sobrevivencia
+
+Slide 1: Título
+Título: Análise de Sobrevivência: Conceitos e Aplicações
+Subtítulo: Introdução à análise de dados de tempo até eventos
+Nome do apresentador e data
+
+Slide 2: Introdução
+O que é Análise de Sobrevivência?
+
+Definição: Técnica estatística usada para analisar o tempo até a ocorrência de um evento de interesse (ex: morte, falha de equipamento, recidiva de doença).
+
+Aplicações: Medicina, engenharia, ciências sociais, marketing, etc.
+
+Característica principal: Presença de censura (dados incompletos).
+
+Slide 3: Conceitos Básicos
+Variáveis e Conceitos Chave:
+
+Tempo de falha (T): Tempo até o evento de interesse.
+
+Censura: Quando o evento não é observado durante o estudo (ex: paciente abandona o estudo antes do evento).
+
+Função de Sobrevivência (S(t)): Probabilidade de sobreviver além do tempo t.
+
+Função de Risco (λ(t)): Taxa instantânea de falha no tempo t, dado que o indivíduo sobreviveu até t.
+
+Slide 4: Tipos de Censura
+Tipos de Censura:
+
+Censura à direita: O evento não ocorreu até o final do estudo.
+
+Censura à esquerda: O evento ocorreu antes do início do estudo.
+
+Censura intervalar: O evento ocorreu em um intervalo de tempo desconhecido.
+
+Censura aleatória: O evento não é observado por razões aleatórias (ex: perda de acompanhamento).
+
+Slide 5: Funções Importantes
+Funções Principais:
+
+Função de Sobrevivência (S(t)): S(t)=P(T≥t).
+
+Função de Risco (λ(t)): λ(t)=lim Δt→0 P(t≤T<t+Δt∣T≥t)/Δt​.
+
+Função de Risco Acumulado (Λ(t)): Λ(t)=∫ 0t λ(u)du.
+
+Relações entre as funções: S(t)=exp{−Λ(t)}.
+
+Slide 6: Estimadores Não-Paramétricos
+Estimadores de Sobrevivência:
+
+Estimador de Kaplan-Meier:
+
+Estimativa não-paramétrica de S(t).
+
+Adequado para dados censurados.
+
+Fórmula: S^ (t)=∏ j:tj<t (1−dj/nj).
+
+Estimador de Nelson-Aalen:
+
+Estimativa da função de risco acumulado Λ(t).
+
+Fórmula: Λ~ (t)=∑j:tj<t (dj/nj).
+
+Slide 7: Modelos Paramétricos
+Modelos Probabilísticos:
+
+Distribuição Exponencial:
+
+Função de risco constante: λ(t)= 1/α.
+
+Simples, mas pouco flexível.
+
+Distribuição de Weibull:
+
+Função de risco pode ser crescente, decrescente ou constante.
+
+Mais flexível que a exponencial.
+
+Distribuição Log-Normal:
+
+Adequada para dados com assimetria.
+
+Função de risco não-monótona.
+
+Slide 8: Método de Máxima Verossimilhança
+Estimação de Parâmetros:
+
+Função de Verossimilhança: XXX
+
+Estimadores de Máxima Verossimilhança:
+
+Encontrados maximizando L(θ).
+
+Propriedades: Consistência, eficiência e normalidade assintótica.
+
+Slide 9: Testes de Hipóteses
+Comparação de Curvas de Sobrevivência:
+
+Teste Log-Rank:
+
+Compara curvas de sobrevivência entre grupos.
+
+Hipótese nula: Curvas são iguais.
+
+Estatística: Baseada na diferença entre falhas observadas e esperadas.
+
+Teste de Wilcoxon:
+
+Similar ao Log-Rank, mas dá mais peso aos tempos iniciais.
+
+Slide 10: Aplicações Práticas
+Exemplos de Aplicação:
+
+Medicina:
+
+Tempo de sobrevivência de pacientes com câncer.
+
+Eficácia de tratamentos.
+
+Engenharia:
+
+Tempo até falha de equipamentos.
+
+Testes de confiabilidade.
+
+Marketing:
+
+Tempo até a desistência de clientes (churn).
+
+Análise de retenção.
+
+Slide 11: Ferramentas e Pacotes
+Ferramentas para Análise de Sobrevivência:
+
+R: Pacotes survival, survminer.
+
+Python: Bibliotecas lifelines, scikit-survival.
+
+Software Estatístico: SAS, SPSS, Stata.
+
+Slide 12: Conclusão
+Resumo:
+
+A análise de sobrevivência é essencial para estudar o tempo até eventos.
+
+Conceitos-chave: Censura, função de sobrevivência, função de risco.
+
+Técnicas: Estimadores não-paramétricos (Kaplan-Meier), modelos paramétricos (Weibull, exponencial).
+
+Aplicações em diversas áreas: Medicina, engenharia, marketing.
+
+Próximos Passos:
+
+Explorar pacotes estatísticos.
+
+Aplicar técnicas em conjuntos de dados reais.
+
+Aprofundar-se em modelos mais complexos (ex: modelos de fragilidade).
+
+Slide 13: Perguntas e Discussão
+Título: Perguntas?
+Subtítulo: Vamos discutir!
+Conteúdo: Espaço para perguntas e discussão.
+
+Slide 14: Referências
+Referências:
+
+Livro: "Análise de Sobrevivência Aplicada" (Colosimo e Giolo).
+
+Artigos e tutoriais sobre análise de sobrevivência.
+
+Documentação de pacotes estatísticos (R, Python).
+
+Dicas para a Apresentação:
+Use gráficos: Inclua gráficos de funções de sobrevivência e risco para ilustrar os conceitos.
+
+Exemplos práticos: Mostre exemplos reais de aplicação em diferentes áreas.
+
+Interação: Incentive perguntas e discussões para engajar o público.
+
+Simplicidade: Mantenha a linguagem acessível, evitando jargões técnicos desnecessários.
+
+Com essa estrutura, você terá uma apresentação clara e informativa que introduzirá o tema de análise de sobrevivência de forma eficaz para um público com pouco conhecimento prévio.
