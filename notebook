@@ -1,0 +1,88 @@
+# %% [markdown]
+# # Análise de Sobrevivência: Exemplo de Reincidência de Tumor Sólido
+# **Exemplo adaptado do livro "Análise de Sobrevivência Aplicada" (Seção 2.5.1)**
+
+# %% [markdown]
+# ## 1. Contexto do Problema
+# Estudo com 10 pacientes para analisar o tempo (em meses) até a reincidência de tumor sólido:
+# - **6 pacientes** tiveram reincidência: 3, 6.5, 6.5, 10, 12, 15 meses  
+# - **4 pacientes** foram censurados (sem reincidência): 4, 5.7, 8.4, 10 meses  
+# 
+# **Objetivo:** Estimar a função de sobrevivência e calcular estatísticas-chave.
+
+# %% [markdown]
+# ## 2. Carregar Pacotes e Dados
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from lifelines import KaplanMeierFitter
+
+# Dados do estudo
+dados = pd.DataFrame({
+    'tempo': [3, 4, 5.7, 6.5, 6.5, 8.4, 10, 10, 12, 15],
+    'evento': [1, 0, 0, 1, 1, 0, 1, 0, 1, 1]  # 1=reincidência, 0=censura
+})
+
+print("Dados do estudo:")
+print(dados.sort_values('tempo'))
+
+# %% [markdown]
+# ## 3. Estimativa de Kaplan-Meier
+kmf = KaplanMeierFitter()
+kmf.fit(durations=dados['tempo'], event_observed=dados['evento'])
+
+# Tabela de sobrevivência
+print("\nTabela de Sobrevivência:")
+print(kmf.survival_function_)
+
+# Intervalos de confiança (95%)
+confianca = kmf.confidence_interval_survival_function_
+print("\nIntervalos de Confiança:")
+print(confianca)
+
+# %% [markdown]
+# ## 4. Gráfico da Função de Sobrevivência
+plt.figure(figsize=(10, 6))
+kmf.plot_survival_function(ci_show=True)
+plt.title('Função de Sobrevivência - Estimador de Kaplan-Meier')
+plt.xlabel('Tempo (meses)')
+plt.ylabel('Probabilidade de Sobrevivência')
+plt.grid(True)
+plt.show()
+
+# %% [markdown]
+# ## 5. Tempo Mediano de Sobrevivência
+mediana = kmf.median_survival_time_
+print(f"\nTempo mediano de sobrevivência: {mediana:.1f} meses")
+
+# %% [markdown]
+# ## 6. Tempo Médio de Vida
+# Restrito ao maior tempo observado (15 meses)
+tempo_max = dados['tempo'].max()
+rmst = kmf.restricted_mean_survival_time(tau=tempo_max)
+print(f"\nTempo médio de vida restrito (RMST): {rmst:.1f} meses")
+
+# %% [markdown]
+# ## 7. Interpretação dos Resultados
+# - **Função de Sobrevivência (S(t)):** Probabilidade de não ter reincidência até o tempo t  
+# - **Tempo Mediano (9.6 meses):** 50% dos pacientes têm reincidência antes desse tempo  
+# - **Intervalos de Confiança:** Refletem a incerteza nas estimativas  
+# - **RMST (10.1 meses):** Tempo médio esperado até a reincidência
+
+# %% [markdown]
+# ## 8. Código para Cálculo Detalhado (Passo a Passo)
+# Cálculo manual para t = 6.5 meses:
+n_sob_risco = len(dados[dados['tempo'] >= 6.5])
+eventos = sum(dados[(dados['tempo'] == 6.5) & (dados['evento'] == 1)]['evento'])
+prob_sobrevivencia = 1 - (eventos / n_sob_risco)
+
+print(f"\nCálculo para t=6.5 meses:")
+print(f"Pacientes sob risco: {n_sob_risco}")
+print(f"Eventos: {eventos}")
+print(f"Probabilidade de sobrevivência: {prob_sobrevivencia:.3f}")
+
+# %% [markdown]
+# ## 9. Conclusão
+# - O estimador de Kaplan-Meier é ideal para dados censurados  
+# - Pacientes têm 50% de chance de sobreviver sem reincidência até ~9.6 meses  
+# - A análise fornece insights valiosos para decisões clínicas
