@@ -1,0 +1,44 @@
+Dados de Hepatite
+
+Um estudo clínico investigou o efeito da terapia com esteróide na hepatite viral aguda. 
+Vinte e nove pacientes foram aleatorizados para receber placebo ou esteróide e acompanhados por 16 semanas, até a morte (evento de interesse) ou perda de acompanhamento. 
+Os tempos de sobrevivência para ambos os grupos estão na tabela abaixo.
+
+
+
+import pandas as pd
+
+# grupo cotnrole
+controle = {'tempo': [1, 2, 3, 3, 3, 5, 5, 16, 16, 16, 16, 16, 16, 16, 16],
+            'evento': [0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
+
+# grupo esteroide
+esteroide = {'tempo': [1, 1, 1, 1, 4, 5, 7, 8, 10, 10, 12, 16, 16, 16],
+             'evento': [1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0]}
+
+df_controle = pd.DataFrame(controle)
+df_esteroide = pd.DataFrame(esteroide)
+
+print("Dados do Grupo Controle:")
+print(df_controle.sort_values('tempo'))
+
+print("\nDados do Grupo Esteróide:")
+print(df_esteroide.sort_values('tempo'))
+
+
+
+
+from lifelines import KaplanMeierFitter
+import matplotlib.pyplot as plt
+
+kmf_controle = KaplanMeierFitter().fit(df_controle['tempo'], df_controle['evento'], label='Controle')
+kmf_esteroide = KaplanMeierFitter().fit(df_esteroide['tempo'], df_esteroide['evento'], label='Esteroide')
+
+# curvas de sobrevivencia
+plt.figure(figsize=(10, 6))
+kmf_controle.plot_survival_function(ci_show=False)
+kmf_esteroide.plot_survival_function(ci_show=False)
+plt.xlabel('semanas')
+plt.ylabel('S(t)')
+plt.grid(True)
+plt.show()

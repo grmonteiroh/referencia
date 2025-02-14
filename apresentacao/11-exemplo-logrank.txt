@@ -1,0 +1,127 @@
+---
+Organizando os dados em um formato adequado para análise
+---
+
+import pandas as pd
+
+# dados de cada grupo
+# evento: 0 = censura e 1 = falha
+grupo1 = {'tempo': [7, 8, 8, 8, 8, 12, 12, 17, 18, 22, 30, 30, 30, 30, 30, 30],
+          'evento': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0]}
+grupo2 = {'tempo': [8, 8, 9, 10, 10, 14, 15, 15, 18, 19, 21, 22, 22, 23, 25],
+          'evento': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]}
+grupo3 = {'tempo': [8, 8, 8, 8, 8, 8, 9, 10, 10, 11, 17, 19],
+          'evento': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]}
+
+df1 = pd.DataFrame(grupo1)
+df2 = pd.DataFrame(grupo2)
+df3 = pd.DataFrame(grupo3)
+
+df1['grupo'] = 'Grupo 1'
+df2['grupo'] = 'Grupo 2'
+df3['grupo'] = 'Grupo 3'
+
+dados = pd.concat([df1, df2, df3], ignore_index=True)
+
+print("Dados combinados:")
+print(dados)
+
+
+---
+Estimativa de Kaplan-Meier
+Calculando a função de sobrevivência para cada grupo usando o Estimador de Kaplan-Meier
+---
+
+from lifelines import KaplanMeierFitter
+import matplotlib.pyplot as plt
+
+# ajuste o modelo para cada grupo
+kmf1 = KaplanMeierFitter().fit(df1['tempo'], df1['evento'], label='Grupo 1')
+kmf2 = KaplanMeierFitter().fit(df2['tempo'], df2['evento'], label='Grupo 2')
+kmf3 = KaplanMeierFitter().fit(df3['tempo'], df3['evento'], label='Grupo 3')
+
+# plota as curvas de sobrevivencia
+plt.figure(figsize=(10, 6))
+kmf1.plot_survival_function(ci_show=False)
+kmf2.plot_survival_function(ci_show=False)
+kmf3.plot_survival_function(ci_show=False)
+plt.title('Curvas de Sobrevivência - Kaplan-Meier')
+plt.xlabel('Tempo (dias)')
+plt.ylabel('Probabilidade de Sobrevivência')
+plt.grid(True)
+plt.show()
+
+
+
+---
+Tabela de Sobrevivência
+---
+
+print("\nTabela de Sobrevivência - Grupo 1:")
+print(kmf1.survival_function_)
+
+print("\nTabela de Sobrevivência - Grupo 2:")
+print(kmf2.survival_function_)
+
+print("\nTabela de Sobrevivência - Grupo 3:")
+print(kmf3.survival_function_)
+
+
+
+---
+Teste de Log-Rank
+O Teste de Log-Rank compara as curvas de sobrevivência entre os grupos. 
+A hipótese nula é que as curvas são iguais.
+---
+
+from lifelines.statistics import logrank_test
+
+resultado = logrank_test(durations_A=df1['tempo'], durations_B=df2['tempo'], durations_C=df3['tempo'],
+                         event_observed_A=df1['evento'], event_observed_B=df2['evento'], event_observed_C=df3['evento'])
+
+print("\nResultado do Teste de Log-Rank:")
+print(f"Estatística do teste: {resultado.test_statistic:.2f}")
+print(f"Valor-p: {resultado.p_value:.4f}")
+
+
+---
+Interpretação dos Resultados
+
+Curvas de Sobrevivência:
+O gráfico mostra as probabilidades de sobrevivência ao longo do tempo para cada grupo.
+O Grupo 1 (imunizado) tem uma curva mais alta, indicando maior sobrevivência.
+O Grupo 3 (malária + esquistossomose) tem a pior sobrevivência.
+
+Teste de Log-Rank:
+Se o valor-p for menor que 0.05, rejeitamos a hipótese nula e concluímos que há diferenças significativas entre os grupos.
+No exemplo, o valor-p foi 0.0019, indicando diferenças significativas.
+
+Comparações Múltiplas:
+Para identificar quais grupos diferem, podemos aplicar o Teste de Log-Rank aos pares:
+---
+
+# Grupo 1 vs Grupo 2
+resultado_1vs2 = logrank_test(df1['tempo'], df2['tempo'], df1['evento'], df2['evento'])
+print("\nGrupo 1 vs Grupo 2:")
+print(f"Estatística: {resultado_1vs2.test_statistic:.2f}, Valor-p: {resultado_1vs2.p_value:.3f}")
+
+# Grupo 2 vs Grupo 3
+resultado_2vs3 = logrank_test(df2['tempo'], df3['tempo'], df2['evento'], df3['evento'])
+print("\nGrupo 2 vs Grupo 3:")
+print(f"Estatística: {resultado_2vs3.test_statistic:.2f}, Valor-p: {resultado_2vs3.p_value:.3f}")
+
+# Grupo 1 vs Grupo 3
+resultado_1vs3 = logrank_test(df1['tempo'], df3['tempo'], df1['evento'], df3['evento'])
+print("\nGrupo 1 vs Grupo 3:")
+print(f"Estatística: {resultado_1vs3.test_statistic:.2f}, Valor-p: {resultado_1vs3.p_value:.3f}")
+
+
+
+---
+Conclusão
+O Estimador de Kaplan-Meier permite estimar a função de sobrevivência na presença de censura.
+
+O Teste de Log-Rank é útil para comparar curvas de sobrevivência entre grupos.
+
+No exemplo, o Grupo 1 (imunizado) teve melhor sobrevivência, enquanto o Grupo 3 (malária + esquistossomose) teve a pior.
+---

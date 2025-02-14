@@ -1,0 +1,7 @@
+Dados de Malária
+
+Um estudo experimental realizado com camundongos para verificar a eficácia da imunização pela malária foi conduzido no Centro de Pesquisas Renee Rachou, Fiocruz, MG. Nesse estudo, quarenta e quatro camundongos foram aleatoriamente divididos em três grupos e todos foram infectados pela malária (Plasmodium berguei). Os camundongos do grupo 1 foram imunizados 30 dias antes da infecção. Além da infecção pela malária, os camundongos dos grupos 1 e 3 foram, também, infectados pela esquistossomose (Schistosoma mansoni). A resposta de interesse nesse estudo foi o tempo ocorrido desde a infecção pela malária até a morte do camundongo. Este tempo foi medido em dias e o estudo foi acompanhado por 30 dias.
+
+Os tempos de sobrevivência observados para os três grupos encontram-se na Tabela abaixo. O símbolo + indica censura.
+
+Tabela: Tempos, em dias, observados no estudo da malária.

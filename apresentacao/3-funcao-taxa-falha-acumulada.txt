@@ -1,0 +1,3 @@
+A função de taxa de falha acumulada, mede o risco total acumulado de ocorrência de um evento até o tempo t.
+Representa o total acumulado de risco ao longo do tempo.
+Pode ser usado para derivar a função de sobrevivência

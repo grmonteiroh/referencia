@@ -1,0 +1,16 @@
+Modelos paramétricos descrevem o tempo de vida de produtos ou indivíduos, sendo amplamente usados na indústrias para análise de "tempo até a falha/evento".
+
+Distribuição Exponencial:
+
+É um dos modelos mais simples para descrever o tempo de falha;
+Possui uma taxa de falha constante ao longo do tempo.
+
+Distribuição de Weibull:
+
+Apresenta uma flexibilidade maior do que a exponencial;
+Permite taxas de falha crescentes, decrescentes ou constantes.
+
+Distribuição Log-Normal:
+
+Útil para modelar tempos de vida de produtos e indivíduos em situações onde os dados são assimétricos;
+Considera que o logaritmo do tempo de falha segue uma distribuição normal.

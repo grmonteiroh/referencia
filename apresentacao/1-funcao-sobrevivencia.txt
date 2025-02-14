@@ -1,0 +1,3 @@
+Mede a probabilidade de um indivíduo sobreviver por mais do que um determinado tempo
+Função não crescente com S(0) = 1
+Quando t tende a infinito S(t) tende a 0

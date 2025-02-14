@@ -1,0 +1,7 @@
+Grupo Esteróide
+Ordenar os tempos de falha: 1, 5, 7, 8, 10, 12, 16 semanas.
+
+Calcular nj e dj.
+
+
+De maneira geral temos:

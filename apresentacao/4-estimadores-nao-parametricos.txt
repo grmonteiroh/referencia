@@ -1,0 +1,13 @@
+Kaplan-Meier
+
+Lida com censura, comum em estudos longitudinais;
+Excelente para comparar curvas de sobrevivência entre grupos;
+Funciona bem com amostras pequenas e censura.
+
+Nelson-Aalen
+
+Estima o risco cumulativo;
+Avalia as mudanças no risco ao longo do tempo;
+Serve como alternativa/complemento ao estimador Kaplan-Meier.
+
+O estimador de KM está relacionado ao de NA da mesma forma que a função de sobrevivência se relaciona com a taxa de falha acumulada.

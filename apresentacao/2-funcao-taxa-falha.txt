@@ -1,0 +1,9 @@
+Mede a probabilidade de um indivíduo sofrer o evento em um intervalo de tempo, dado que ele sobreviveu até o tempo t
+
+Curva de banheira
+A identificação da curva de taxa de falha de um 
+componente ou equipamento ajuda no controle da manutenção
+
+A manutenção preventiva pode aumentar a taxa de falhas do equipamento
+Expondo-o a um pico de taxa de falhas mais elevadas, na fase prematura
+Manutenção preditiva

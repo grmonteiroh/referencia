@@ -1,0 +1,23 @@
+Construção do Estimador de Kaplan-Meier
+
+1. Base do Método
+Considere intervalos de tempo muito pequenos. A função de sobrevivência S(t) é o produto dos termos:
+
+Somente intervalos com eventos de falha contribuem para S(t); nos demais, o valor do produto é 1.
+
+2. Calcular a probabilidade de falha em cada tempo distinto de falha
+
+3. Ordenar os tempos de falha distintos em ordem crescente.
+
+
+
+Construção do Estimador de Kaplan-Meier
+
+4. Definindo notações:
+​dj : Número de falhas no tempo tj.
+nj : Número de indivíduos sob risco imediatamente antes do tempo tj.
+qj : Razão entre dj e nj
+
+5. Construir o estimador de sobrevivência
+
+6. Interpretar o estimador

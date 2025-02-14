@@ -1,0 +1,8 @@
+Compara curvas de sobrevivência de dois ou mais grupos.
+Testa diferenças na probabilidade de sobrevivência ao longo do tempo.
+
+Hipóteses
+H₀: As curvas são iguais.
+H₁: As curvas são diferentes.
+
+Estatística de teste logrank
